@@ -189,8 +189,8 @@ section:nth-child(1) :not(video) {
 .members-container {
   position: relative;
   display: flex;
-  gap: 40px;
-  max-width: 1200px;
+  gap: 80px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 80px 20px 0;
   align-items: center;
@@ -256,9 +256,9 @@ section:nth-child(1) :not(video) {
 .members-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 40px;
   flex: 1;
-  max-width: 700px;
+  max-width: 900px;
 }
 @media (max-width: 960px) {
   .members-grid {
