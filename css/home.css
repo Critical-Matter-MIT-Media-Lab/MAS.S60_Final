@@ -67,9 +67,6 @@ section:nth-child(1) :not(video) {
 #selected_work:has(ol li:nth-child(5):hover) .bg {
   background: #1f312d;
 }
-#selected_work:has(ol li:nth-child(6):hover) .bg {
-  background: #2a2d3e;
-}
 #selected_work .bg img {
   position: absolute;
   top: 51%;
@@ -82,13 +79,22 @@ section:nth-child(1) :not(video) {
   opacity: 0.3;
   transition: 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
 }
-#members {
+#team {
   background: #000;
-  min-height: auto;
-  height: auto;
-  padding-bottom: 80px;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
-#members * {
+#team h5 {
+  text-align: center;
+  opacity: 0.4;
+  padding-top: 3em;
+  flex-shrink: 0;
+}
+#team * {
   color: #fff;
   -webkit-font-smoothing: antialiased;
 }
@@ -192,9 +198,10 @@ section:nth-child(1) :not(video) {
   gap: 80px;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 80px 20px 0;
+  padding: 0 20px;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 @media (max-width: 960px) {
   .members-container {
@@ -269,68 +276,114 @@ section:nth-child(1) :not(video) {
 .members-grid .member-card img {
   aspect-ratio: 1/1;
 }
-#students-section {
+#students {
+  background: #000;
+  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px 80px;
+  overflow: hidden;
 }
-#students-section h5 {
-  text-align: center;
+#students * {
   color: #fff;
-  opacity: 0.6;
-  margin-bottom: 40px;
+  -webkit-font-smoothing: antialiased;
 }
-#students-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 30px;
-  justify-items: center;
+#students h5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0.4;
+  padding-top: 2em;
+  z-index: 10;
+}
+#students > .students-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-55%);
+
+  width: auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+@media (max-width: 1200px) {
+  #students > .students-container {
+    right: 40px;
+    max-width: 800px;
+  }
 }
 @media (max-width: 960px) {
-  #students-grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 25px;
+  #students > .students-container {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
   }
 }
-@media (max-width: 720px) {
-  #students-grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 20px;
-  }
+.students-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
-.student-card {
-  text-align: center;
-  max-width: 150px;
-  height: auto;
+.student-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
-.student-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  background: #333;
-  display: none;
-}
-.student-card h4 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
+.row-label {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: #fff;
-  text-transform: none;
-  letter-spacing: 0;
-  font-family: "Inter", sans-serif;
-  line-height: 1.4;
-  min-height: 1.4em;
+  min-width: 100px;
+  text-align: left;
+  flex-shrink: 0;
 }
-@media (max-width: 720px) {
-  .student-card h4 {
-    font-size: 12px;
-    line-height: 1.4;
-    min-height: 1.4em;
+.row-members {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+.students-container .member-card {
+  max-width: 150px;
+  flex-shrink: 0;
+}
+.students-container .member-card img {
+  max-width: 120px;
+  margin: 0 auto;
+  display: block;
+}
+.students-container .member-card h3 {
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+@media (max-width: 1200px) {
+  .row-label {
+    min-width: 80px;
+    font-size: 14px;
+  }
+  .row-members {
+    gap: 15px;
+  }
+  .students-container .member-card {
+    max-width: 130px;
+  }
+  .students-container .member-card img {
+    max-width: 110px;
+  }
+}
+@media (max-width: 960px) {
+  .student-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .row-label {
+    text-align: left;
+  }
+  .row-members {
+    flex-wrap: wrap;
   }
 }
