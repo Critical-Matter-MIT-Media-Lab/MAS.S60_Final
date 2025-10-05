@@ -1,0 +1,336 @@
+section:nth-child(1) {
+  background: #090c1d;
+  overflow: hidden;
+}
+section:nth-child(1) :not(video) {
+  z-index: 1;
+}
+.cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+#about div:not(.bg) {
+  max-width: 720px;
+}
+#selected_work {
+  background: #1f2231;
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+}
+#selected_work * {
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+#selected_work nav {
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  height: auto;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+}
+#selected_work .bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1f2231;
+  transition: background-color 0.5s ease;
+}
+#selected_work ol li:hover {
+  position: relative;
+  z-index: 2;
+}
+#selected_work:has(ol li:nth-child(1):hover) .bg {
+  background: #2d1f31;
+}
+#selected_work:has(ol li:nth-child(2):hover) .bg {
+  background: #1f2d31;
+}
+#selected_work:has(ol li:nth-child(3):hover) .bg {
+  background: #2d2f1f;
+}
+#selected_work:has(ol li:nth-child(4):hover) .bg {
+  background: #312d1f;
+}
+#selected_work:has(ol li:nth-child(5):hover) .bg {
+  background: #1f312d;
+}
+#selected_work:has(ol li:nth-child(6):hover) .bg {
+  background: #2a2d3e;
+}
+#selected_work .bg img {
+  position: absolute;
+  top: 51%;
+  left: 51%;
+  min-width: 102%;
+  min-height: 102%;
+  width: auto;
+  height: auto;
+  transform: translate3d(-51%, -51%, 0);
+  opacity: 0.3;
+  transition: 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+#members {
+  background: #000;
+  min-height: auto;
+  height: auto;
+  padding-bottom: 80px;
+}
+#members * {
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+#selected_work ol {
+  padding-left: 30px;
+}
+@media (max-width: 720px) {
+  #selected_work ol {
+    padding-left: 9px;
+  }
+}
+#links {
+  top: auto;
+  bottom: 120px;
+  height: auto;
+  max-width: 440px;
+  margin: auto;
+}
+#links a {
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  font-size: 0.75rem;
+}
+#links a:not(:last-child) {
+  margin-right: 1.5em;
+}
+@media (max-width: 720px) {
+  #links a:not(:last-child) {
+    margin-right: 1em;
+  }
+}
+@media (max-width: 720px) {
+  #links a {
+    font-size: 10px;
+    font-size: 0.625rem;
+  }
+}
+.link-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  width: 80px;
+  height: 20px;
+  margin: auto;
+  animation: bounce 3s infinite ease-in-out;
+}
+.link-bottom:after,
+.link-bottom:before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: #eee;
+  top: 40%;
+  left: 50%;
+}
+.link-bottom:before {
+  margin-left: -38px;
+  -webkit-transform: rotate(25deg);
+  transform: rotate(25deg);
+}
+.link-bottom:after {
+  margin-left: -2px;
+  -webkit-transform: rotate(-25deg);
+  transform: rotate(-25deg);
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40% {
+    transform: translate3d(0, 20%, 0);
+  }
+}
+.logo {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 20px;
+  margin: -40px auto 0;
+}
+.logo div {
+  position: relative;
+  width: 100%;
+  background: url(../images/logo.png) no-repeat;
+  background: url(../images/logo.svg) no-repeat, none;
+  background-size: 100%;
+  padding-bottom: 22%;
+  z-index: 1;
+  height: 0;
+}
+.members-container {
+  position: relative;
+  display: flex;
+  gap: 80px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 80px 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 960px) {
+  .members-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+.member-card {
+  text-align: center;
+}
+.member-card img {
+  width: 100%;
+  height: auto;
+  background: #333;
+  display: block;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.member-card h3 {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  font-family: "Inter", sans-serif;
+}
+.member-card .subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 8px;
+  opacity: 0.7;
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: "Inter", sans-serif;
+}
+.member-main {
+  flex: 0 0 280px;
+}
+@media (max-width: 960px) {
+  .member-main {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 380px;
+  }
+}
+.member-main img {
+  aspect-ratio: 1/1;
+}
+.member-main h3 {
+  font-size: 20px;
+}
+.member-main .subtitle {
+  font-size: 14px;
+  margin-top: 8px;
+}
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  flex: 1;
+  max-width: 900px;
+}
+@media (max-width: 960px) {
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+  }
+}
+.members-grid .member-card img {
+  aspect-ratio: 1/1;
+}
+#students-section {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 80px;
+}
+#students-section h5 {
+  text-align: center;
+  color: #fff;
+  opacity: 0.6;
+  margin-bottom: 40px;
+}
+#students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+@media (max-width: 960px) {
+  #students-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 25px;
+  }
+}
+@media (max-width: 720px) {
+  #students-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 20px;
+  }
+}
+.student-card {
+  text-align: center;
+  max-width: 150px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.student-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  background: #333;
+  display: none;
+}
+.student-card h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.4;
+  min-height: 1.4em;
+}
+@media (max-width: 720px) {
+  .student-card h4 {
+    font-size: 12px;
+    line-height: 1.4;
+    min-height: 1.4em;
+  }
+}
