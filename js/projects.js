@@ -18,7 +18,8 @@
       link.addEventListener('mouseover', function(e) {
         const bgUrl = this.getAttribute('data-bg');
         const shouldRotate = this.getAttribute('data-rotate');
-        console.log('MOUSEOVER! Loading image:', bgUrl, 'Rotate:', shouldRotate);
+        const shouldZoom = this.getAttribute('data-zoom');
+        console.log('MOUSEOVER! Loading image:', bgUrl, 'Rotate:', shouldRotate, 'Zoom:', shouldZoom);
         
         if (bgUrl) {
           // Clear existing images
@@ -29,15 +30,22 @@
           img.id = 'project-bg-img';
           img.src = bgUrl;
           
-          // Add rotation class if needed
+          // Add classes based on data attributes
+          var classes = [];
           if (shouldRotate === 'true') {
-            img.className = 'rotated';
+            classes.push('rotated');
+          }
+          if (shouldZoom === 'true') {
+            classes.push('zoomed');
+          }
+          if (classes.length > 0) {
+            img.className = classes.join(' ');
           }
           
           img.style.cssText = 'opacity: 0.6 !important; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;';
           bg.appendChild(img);
           
-          console.log('Image added to background, children:', bg.children.length);
+          console.log('Image added to background, classes:', img.className);
         }
       });
       

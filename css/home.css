@@ -59,7 +59,7 @@ section:nth-child(1) :not(video) {
   z-index: 2;
 }
 #selected_work:has(ol li:nth-child(1):hover) .bg {
-  background: #2d1f31;
+  background: #000;
 }
 #selected_work:has(ol li:nth-child(2):hover) .bg {
   background: #000;
@@ -85,6 +85,9 @@ section:nth-child(1) :not(video) {
   transform: translate(-50%, -50%) !important;
   opacity: 0.6 !important;
   transition: opacity 0.5s ease !important;
+}
+#selected_work .bg img.zoomed {
+  transform: translate(-50%, -50%) scale(1.5) !important;
 }
 #selected_work .bg img.rotated {
   transform: translate(-50%, -50%) rotate(90deg) !important;
