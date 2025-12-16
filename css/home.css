@@ -36,10 +36,11 @@ section:nth-child(1) :not(video) {
   transform: translateY(-50%);
   left: 0;
   right: 0;
+  z-index: 2;
 }
 #selected_work .bg {
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -47,8 +48,13 @@ section:nth-child(1) :not(video) {
   overflow: hidden;
   background: #1f2231;
   transition: background-color 0.5s ease;
+  pointer-events: none;
 }
-#selected_work ol li:hover {
+#selected_work nav,
+#selected_work h5,
+#selected_work ol,
+#selected_work ol li,
+#selected_work ol li a {
   position: relative;
   z-index: 2;
 }
@@ -56,7 +62,7 @@ section:nth-child(1) :not(video) {
   background: #2d1f31;
 }
 #selected_work:has(ol li:nth-child(2):hover) .bg {
-  background: #1f2d31;
+  background: #000;
 }
 #selected_work:has(ol li:nth-child(3):hover) .bg {
   background: #2d2f1f;
@@ -65,18 +71,27 @@ section:nth-child(1) :not(video) {
   background: #312d1f;
 }
 #selected_work:has(ol li:nth-child(5):hover) .bg {
-  background: #1f312d;
+  background: #000;
 }
 #selected_work .bg img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-  transition: opacity 0.5s ease;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  transform: translate(-50%, -50%) !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.5s ease !important;
+}
+#selected_work .bg img.rotated {
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+  width: 100vh !important;
+  height: 100vw !important;
+  max-width: none !important;
+  max-height: none !important;
 }
 #team {
   background: #000;
@@ -213,12 +228,14 @@ section:nth-child(1) :not(video) {
 }
 .member-card img {
   width: 100%;
+  max-width: 200px;
   height: auto;
   background: #333;
   display: block;
   border-radius: 50%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  margin: 0 auto;
 }
 .member-card h3 {
   margin-top: 15px;
@@ -240,7 +257,10 @@ section:nth-child(1) :not(video) {
   font-family: "Inter", sans-serif;
 }
 .member-main {
-  flex: 0 0 280px;
+  flex: 0 0 250px;
+}
+.member-main img {
+  max-width: 250px;
 }
 @media (max-width: 960px) {
   .member-main {
@@ -274,6 +294,7 @@ section:nth-child(1) :not(video) {
 }
 .members-grid .member-card img {
   aspect-ratio: 1/1;
+  max-width: 200px;
 }
 #students {
   background: #000;
@@ -322,12 +343,17 @@ section:nth-child(1) :not(video) {
 .students-container {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 15px;
 }
 .student-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.row-members {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 .row-label {
   font-size: 16px;
@@ -345,17 +371,23 @@ section:nth-child(1) :not(video) {
   flex-wrap: nowrap;
 }
 .students-container .member-card {
-  max-width: 150px;
+  width: 110px;
+  max-width: 110px;
+  min-width: 110px;
   flex-shrink: 0;
+  flex-grow: 0;
 }
 .students-container .member-card img {
-  max-width: 120px;
+  width: 110px !important;
+  height: 110px !important;
+  max-width: 110px !important;
+  min-width: 110px !important;
   margin: 0 auto;
   display: block;
 }
 .students-container .member-card h3 {
-  font-size: 12px;
-  margin-top: 10px;
+  font-size: 11px;
+  margin-top: 8px;
   font-weight: 500;
 }
 @media (max-width: 1200px) {
@@ -364,13 +396,22 @@ section:nth-child(1) :not(video) {
     font-size: 14px;
   }
   .row-members {
-    gap: 15px;
+    gap: 10px;
   }
   .students-container .member-card {
-    max-width: 130px;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
   }
   .students-container .member-card img {
-    max-width: 110px;
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100px !important;
+    min-width: 100px !important;
+  }
+  .students-container .member-card h3 {
+    font-size: 10px;
+    margin-top: 6px;
   }
 }
 @media (max-width: 960px) {
