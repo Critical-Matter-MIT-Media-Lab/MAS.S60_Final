@@ -109,7 +109,7 @@ section:nth-child(1) :not(video) {
   pointer-events: none !important;
 }
 #selected_work .bg .video-wrapper-preload.video-zoomed iframe {
-  transform: translate(-50%, -50%) scale(1.3) !important;
+  transform: translate(-50%, -50%) scale(1.6) !important;
 }
 #selected_work .bg iframe,
 #selected_work .bg #project-bg-video {
