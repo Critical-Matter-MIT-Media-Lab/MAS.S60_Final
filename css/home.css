@@ -5,6 +5,11 @@ section:nth-child(1) {
 section:nth-child(1) :not(video) {
   z-index: 1;
 }
+@media (max-width: 768px) {
+  section:nth-child(1) {
+    display: none;
+  }
+}
 .cover-image {
   position: absolute;
   top: 0;
@@ -23,6 +28,9 @@ section:nth-child(1) :not(video) {
   position: relative;
   height: 100vh;
   min-height: 100vh;
+}
+#selected_work .section-title {
+  display: none;
 }
 #selected_work * {
   color: #fff;
@@ -109,7 +117,7 @@ section:nth-child(1) :not(video) {
   pointer-events: none !important;
 }
 #selected_work .bg .video-wrapper-preload.video-zoomed iframe {
-  transform: translate(-50%, -50%) scale(1.6) !important;
+  transform: translate(-50%, -50%) scale(2) !important;
 }
 #selected_work .bg iframe,
 #selected_work .bg #project-bg-video {
@@ -126,18 +134,15 @@ section:nth-child(1) :not(video) {
 }
 #team {
   background: #000;
-  height: 100vh;
   min-height: 100vh;
-  overflow: hidden;
+  height: auto;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  padding: 80px 0;
 }
 #team h5 {
   text-align: center;
   opacity: 0.4;
-  padding-top: 3em;
-  flex-shrink: 0;
+  margin-bottom: 60px;
 }
 #team * {
   color: #fff;
@@ -243,13 +248,12 @@ section:nth-child(1) :not(video) {
 .members-container {
   position: relative;
   display: flex;
-  gap: 80px;
-  max-width: 1600px;
+  gap: 60px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  flex: 1;
 }
 @media (max-width: 960px) {
   .members-container {
@@ -262,7 +266,7 @@ section:nth-child(1) :not(video) {
 }
 .member-card img {
   width: 100%;
-  max-width: 200px;
+  max-width: 180px;
   height: auto;
   background: #333;
   display: block;
@@ -291,10 +295,10 @@ section:nth-child(1) :not(video) {
   font-family: "Inter", sans-serif;
 }
 .member-main {
-  flex: 0 0 250px;
+  flex: 0 0 220px;
 }
 .member-main img {
-  max-width: 250px;
+  max-width: 220px;
 }
 @media (max-width: 960px) {
   .member-main {
@@ -316,9 +320,9 @@ section:nth-child(1) :not(video) {
 .members-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 25px;
   flex: 1;
-  max-width: 900px;
+  max-width: 800px;
 }
 @media (max-width: 960px) {
   .members-grid {
@@ -328,14 +332,14 @@ section:nth-child(1) :not(video) {
 }
 .members-grid .member-card img {
   aspect-ratio: 1/1;
-  max-width: 200px;
+  max-width: 180px;
 }
 #students {
   background: #000;
-  height: 100vh;
   min-height: 100vh;
+  height: auto;
   position: relative;
-  overflow: hidden;
+  padding: 60px 0;
 }
 #students * {
   color: #fff;
@@ -352,32 +356,28 @@ section:nth-child(1) :not(video) {
   z-index: 10;
 }
 #students > .students-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateY(-55%);
-
+  position: relative;
   width: auto;
-  max-width: 1100px;
-  padding: 0 20px;
+  max-width: 1400px;
+  padding: 40px 20px;
+  margin: 0 auto;
 }
-@media (max-width: 1200px) {
+@media (min-width: 961px) {
   #students > .students-container {
-    right: 40px;
-    max-width: 800px;
+    padding-right: 100px;
+    padding-left: 200px;
   }
 }
 @media (max-width: 960px) {
   #students > .students-container {
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
+    max-width: 100%;
+    padding: 20px;
   }
 }
 .students-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
 }
 .student-row {
   display: flex;
@@ -386,7 +386,7 @@ section:nth-child(1) :not(video) {
 }
 .row-members {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: nowrap;
 }
 .row-label {
@@ -405,25 +405,25 @@ section:nth-child(1) :not(video) {
   flex-wrap: nowrap;
 }
 .students-container .member-card {
-  width: 110px;
-  max-width: 110px;
-  min-width: 110px;
+  width: 90px;
+  max-width: 90px;
+  min-width: 90px;
   flex-shrink: 0;
   flex-grow: 0;
 }
 .students-container .member-card img {
-  width: 110px !important;
-  height: 110px !important;
-  max-width: 110px !important;
-  min-width: 110px !important;
+  width: 90px !important;
+  height: 90px !important;
+  max-width: 90px !important;
+  min-width: 90px !important;
   margin: 0 auto;
   display: block;
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
 }
 .students-container .member-card h3 {
-  font-size: 11px;
-  margin-top: 8px;
+  font-size: 10px;
+  margin-top: 6px;
   font-weight: 500;
 }
 @media (max-width: 1200px) {
@@ -432,24 +432,24 @@ section:nth-child(1) :not(video) {
     font-size: 14px;
   }
   .row-members {
-    gap: 10px;
+    gap: 8px;
   }
   .students-container .member-card {
-    width: 100px;
-    max-width: 100px;
-    min-width: 100px;
+    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
   }
   .students-container .member-card img {
-    width: 100px !important;
-    height: 100px !important;
-    max-width: 100px !important;
-    min-width: 100px !important;
+    width: 80px !important;
+    height: 80px !important;
+    max-width: 80px !important;
+    min-width: 80px !important;
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
   }
   .students-container .member-card h3 {
-    font-size: 10px;
-    margin-top: 6px;
+    font-size: 9px;
+    margin-top: 5px;
   }
 }
 @media (max-width: 960px) {

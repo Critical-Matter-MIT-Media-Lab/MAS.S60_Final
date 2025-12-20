@@ -1,0 +1,173 @@
+/* Mobile-specific styles for MAS.S60 2025 */
+
+@media (max-width: 960px) {
+  /* Hide desktop intro section */
+  section:nth-child(1) {
+    display: none !important;
+  }
+  
+  /* Group Projects Section */
+  #selected_work {
+    height: auto !important;
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+  
+  #selected_work .section-title {
+    display: block !important;
+  }
+  
+  #selected_work h5 {
+    display: none !important;
+  }
+  
+  #selected_work nav {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    padding: 0 20px 40px;
+    width: 100%;
+  }
+  
+  #selected_work ol {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #selected_work ol li {
+    padding: 0;
+    text-align: left;
+  }
+  
+  #selected_work ol li a {
+    font-size: 24px !important;
+    display: block;
+    padding: 10px 0;
+    line-height: 1.2;
+  }
+  
+  #selected_work ol li time {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+  
+  /* Team Section */
+  #team {
+    padding: 60px 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  #team h5 {
+    margin-bottom: 40px;
+  }
+  
+  .members-container {
+    flex-direction: column !important;
+    gap: 40px !important;
+    padding: 0 30px !important;
+  }
+  
+  .member-main {
+    flex: 0 0 auto !important;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    max-width: 500px !important;
+    margin: 0 auto;
+  }
+  
+  .member-card img {
+    max-width: 200px !important;
+  }
+  
+  .member-card h3 {
+    font-size: 14px !important;
+  }
+  
+  .member-card .subtitle {
+    font-size: 11px !important;
+  }
+  
+  /* Students Section */
+  #students {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
+  }
+  
+  #students h5 {
+    position: relative !important;
+    padding-top: 0 !important;
+    margin-bottom: 30px;
+  }
+  
+  #students > .students-container {
+    position: relative !important;
+    transform: none !important;
+    padding: 0 20px !important;
+    max-width: 100% !important;
+    right: auto !important;
+    left: auto !important;
+  }
+  
+  .students-container {
+    gap: 25px !important;
+  }
+  
+  .student-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+  
+  .row-label {
+    font-size: 14px !important;
+    margin-bottom: 10px;
+  }
+  
+  .row-members {
+    width: 100%;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+  }
+  
+  .students-container .member-card {
+    width: 80px !important;
+    max-width: 80px !important;
+    min-width: 80px !important;
+  }
+  
+  .students-container .member-card img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  .students-container .member-card h3 {
+    font-size: 9px !important;
+    margin-top: 5px !important;
+  }
+  
+  /* Disable scroll snap on mobile */
+  html {
+    scroll-snap-type: none !important;
+  }
+  
+  section {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+}
+
