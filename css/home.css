@@ -28,15 +28,12 @@ section:nth-child(1) :not(video) {
   position: relative;
 }
 #selected_work {
-  background: #1f2231;
+  background: #000;
   position: sticky;
   top: 0;
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
-}
-#selected_work .section-title {
-  display: none;
 }
 #selected_work * {
   color: #fff;

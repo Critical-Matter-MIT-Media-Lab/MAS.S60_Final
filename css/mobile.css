@@ -13,9 +13,6 @@
     padding: 40px 0;
   }
   
-  #selected_work .section-title {
-    display: block !important;
-  }
   
   #selected_work h5 {
     display: none !important;

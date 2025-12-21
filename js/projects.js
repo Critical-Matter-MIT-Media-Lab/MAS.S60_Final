@@ -105,31 +105,8 @@
       });
     });
 
-    // Mobile Scroll Observer
-    if (window.innerWidth <= 960 && 'IntersectionObserver' in window) {
-      const observerOptions = {
-        root: null,
-        rootMargin: '-45% 0px -45% 0px', // Active only in the middle 10% of screen
-        threshold: 0
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const link = entry.target;
-            
-            // Trigger mouseover logic programmatically
-            link.dispatchEvent(new Event('mouseover'));
-            
-            // Update active styling
-            projectLinks.forEach(l => l.classList.remove('mobile-active'));
-            link.classList.add('mobile-active');
-          }
-        });
-      }, observerOptions);
-
-      projectLinks.forEach(link => observer.observe(link));
-    }
+    // Mobile Scroll Observer - DISABLED, handled by mobile-scroll.js
+    // The sticky scroll logic in mobile-scroll.js now controls project switching
   }
   
   // Initialize
