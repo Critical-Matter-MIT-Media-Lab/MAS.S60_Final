@@ -29,17 +29,17 @@
         const wrapper = document.createElement('div');
         wrapper.className = 'gif-wrapper-preload';
         wrapper.setAttribute('data-gif-url', gifUrl);
-        // CSS in mobile.css handles all styling
+        wrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; opacity: 0; z-index: 0; pointer-events: none;';
         
         const img = document.createElement('img');
         img.src = gifUrl;
-        // CSS in mobile.css handles positioning
+        img.style.cssText = 'position: absolute; top: 50%; left: 50%; width: auto; height: 100%; max-width: none; transform: translate(-50%, -50%);';
         
         wrapper.appendChild(img);
         bg.appendChild(wrapper);
-        videoCache[gifUrl] = wrapper; // Use gifUrl as key for mobile
+        videoCache[gifUrl] = wrapper;
         
-        console.log('GIF wrapper added');
+        console.log('GIF wrapper added:', gifUrl);
       } else if (!isMobile && videoId && !videoCache[videoId]) {
         // Desktop: Preload video
         console.log('Preloading video:', videoId, 'start:', videoStart, 'zoom:', videoZoom);
