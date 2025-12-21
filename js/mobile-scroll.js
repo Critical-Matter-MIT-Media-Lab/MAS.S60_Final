@@ -26,6 +26,7 @@
   currentProjectIndex = Math.floor(Math.random() * totalProjects);
 
   function updateActiveProject(index) {
+    // Update text highlighting
     projectItems.forEach((item, i) => {
       const link = item.querySelector('a');
       if (i === index) {
@@ -38,7 +39,7 @@
     });
     currentProjectIndex = index;
     
-    // Update GIF visibility - match by data-gif attribute
+    // Update GIF visibility using CSS class
     const bg = document.querySelector('#selected_work .bg');
     const gifWrappers = bg ? bg.querySelectorAll('.gif-wrapper-preload') : [];
     const currentLink = projectItems[index]?.querySelector('a');
@@ -47,9 +48,9 @@
     gifWrappers.forEach((wrapper) => {
       const wrapperGifUrl = wrapper.getAttribute('data-gif-url');
       if (wrapperGifUrl === currentGifUrl) {
-        wrapper.style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0.6 !important; pointer-events: none !important; z-index: 1 !important; transition: opacity 0.5s ease !important;';
+        wrapper.classList.add('active');
       } else {
-        wrapper.style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
+        wrapper.classList.remove('active');
       }
     });
   }

@@ -29,15 +29,15 @@
         const wrapper = document.createElement('div');
         wrapper.className = 'gif-wrapper-preload';
         wrapper.setAttribute('data-gif-url', gifUrl);
-        wrapper.style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
+        // CSS in mobile.css handles all styling
         
         const img = document.createElement('img');
         img.src = gifUrl;
-        img.style.cssText = 'position: absolute !important; top: 50% !important; left: 50% !important; width: 100% !important; height: 100% !important; object-fit: cover !important; transform: translate(-50%, -50%) !important;';
+        // CSS in mobile.css handles positioning
         
         wrapper.appendChild(img);
         bg.appendChild(wrapper);
-        videoCache[videoId] = wrapper;
+        videoCache[gifUrl] = wrapper; // Use gifUrl as key for mobile
         
         console.log('GIF wrapper added');
       } else if (!isMobile && videoId && !videoCache[videoId]) {

@@ -39,30 +39,28 @@
     text-align: left;
   }
   
-  #selected_work ol:hover li a {
-    opacity: 1 !important;
-    filter: none !important;
-  }
-  
-  #selected_work ol li a:hover {
-    transform: none !important;
-    text-shadow: none !important;
-  }
-  
   #selected_work ol li a {
     font-size: 20px !important;
     display: block;
     padding: 10px 0;
     line-height: 1.2;
-    opacity: 0.3;
+    opacity: 0.3 !important;
     transition: all 0.4s ease;
     transform-origin: left center;
+    transform: none !important;
+    text-shadow: none !important;
   }
   
   #selected_work ol li a.mobile-active {
     opacity: 1 !important;
-    transform: scale(1.1);
+    transform: scale(1.05) !important;
     text-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
+  }
+  
+  /* Active GIF visibility */
+  #selected_work .bg .gif-wrapper-preload.active {
+    opacity: 0.7 !important;
+    z-index: 1 !important;
   }
   
   #selected_work ol li time {
@@ -105,13 +103,12 @@
   
   #selected_work .bg .gif-wrapper-preload img {
     position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
+    top: 50% !important;
+    left: 50% !important;
     width: auto !important;
     height: 100% !important;
     max-width: none !important;
-    object-fit: none !important;
-    transform: none !important;
+    transform: translate(-50%, -50%) !important;
   }
   
   /* Team Section */
