@@ -16,7 +16,8 @@
   let isLocked = false; // Lock scrolling when in project section
   let touchStartY = 0;
   let lastSwipeTime = 0;
-  const swipeCooldown = 600; // ms between project switches
+  const swipeCooldown = 400; // ms between project switches (reduced for responsiveness)
+  const swipeThreshold = 30; // px needed to trigger swipe (reduced for sensitivity)
 
   if (!projectSection || totalProjects === 0) {
     return;
@@ -141,7 +142,6 @@
     
     const touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
-    const swipeThreshold = 50;
 
     if (isLocked && Math.abs(deltaY) > swipeThreshold) {
       if (deltaY > 0) {
@@ -152,6 +152,9 @@
         handleSwipe('up');
       }
     }
+    
+    // Always ensure current project is fully active after touch ends
+    updateActiveProject(currentProjectIndex);
   }, { passive: true });
 
   // Check scroll position to re-lock when entering project section
