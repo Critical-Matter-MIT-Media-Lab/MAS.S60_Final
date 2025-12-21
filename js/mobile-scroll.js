@@ -13,71 +13,81 @@
   const projectSection = document.querySelector('#selected_work');
   const projectItems = document.querySelectorAll('#selected_work ol li');
   const totalProjects = projectItems.length;
-  let isLocked = false; // Lock scrolling when in project section
+  let isLocked = false;
   let touchStartY = 0;
   let lastSwipeTime = 0;
-  const swipeCooldown = 400; // ms between project switches (reduced for responsiveness)
-  const swipeThreshold = 30; // px needed to trigger swipe (reduced for sensitivity)
+  const swipeCooldown = 400;
+  const swipeThreshold = 30;
+  
+  // Cache DOM elements for performance
+  const bg = document.querySelector('#selected_work .bg');
+  let gifWrappers = [];
+  let projectLinks = [];
+  let savedScrollY = 0;
 
   if (!projectSection || totalProjects === 0) {
     return;
   }
 
+  // Cache project links
+  projectItems.forEach((item, i) => {
+    projectLinks[i] = item.querySelector('a');
+  });
+
   // Randomly select starting project
   currentProjectIndex = Math.floor(Math.random() * totalProjects);
 
   function updateActiveProject(index) {
-    // Update text highlighting
-    projectItems.forEach((item, i) => {
-      const link = item.querySelector('a');
-      if (i === index) {
-        item.classList.add('mobile-active');
-        if (link) link.classList.add('mobile-active');
-      } else {
-        item.classList.remove('mobile-active');
-        if (link) link.classList.remove('mobile-active');
+    // Use requestAnimationFrame for smooth updates
+    requestAnimationFrame(() => {
+      // Update text highlighting
+      for (let i = 0; i < totalProjects; i++) {
+        const item = projectItems[i];
+        const link = projectLinks[i];
+        if (i === index) {
+          item.classList.add('mobile-active');
+          if (link) link.classList.add('mobile-active');
+        } else {
+          item.classList.remove('mobile-active');
+          if (link) link.classList.remove('mobile-active');
+        }
       }
-    });
-    currentProjectIndex = index;
-    
-    // Update GIF visibility using CSS class
-    const bg = document.querySelector('#selected_work .bg');
-    const gifWrappers = bg ? bg.querySelectorAll('.gif-wrapper-preload') : [];
-    const currentLink = projectItems[index]?.querySelector('a');
-    const currentGifUrl = currentLink?.getAttribute('data-gif');
-    
-    gifWrappers.forEach((wrapper) => {
-      const wrapperGifUrl = wrapper.getAttribute('data-gif-url');
-      if (wrapperGifUrl === currentGifUrl) {
-        wrapper.classList.add('active');
-      } else {
-        wrapper.classList.remove('active');
+      currentProjectIndex = index;
+      
+      // Update GIF visibility
+      const currentGifUrl = projectLinks[index]?.getAttribute('data-gif');
+      
+      for (let j = 0; j < gifWrappers.length; j++) {
+        const wrapper = gifWrappers[j];
+        const wrapperGifUrl = wrapper.getAttribute('data-gif-url');
+        if (wrapperGifUrl === currentGifUrl) {
+          wrapper.classList.add('active');
+        } else {
+          wrapper.classList.remove('active');
+        }
       }
     });
   }
 
   function isProjectSectionInView() {
     const rect = projectSection.getBoundingClientRect();
-    // Consider in view if top is near or above viewport top and bottom is below viewport
     return rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
   }
 
+  // Simpler scroll lock - just use overflow hidden on html
   function lockScroll() {
+    if (isLocked) return;
     isLocked = true;
+    savedScrollY = window.scrollY;
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${window.scrollY}px`;
   }
 
   function unlockScroll() {
+    if (!isLocked) return;
     isLocked = false;
-    const scrollY = document.body.style.top;
+    document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
-    window.scrollTo(0, parseInt(scrollY || '0') * -1);
   }
 
   function handleSwipe(direction) {
@@ -177,10 +187,12 @@
   // Initialize with random project as active
   // Wait for projects.js to create GIF wrappers first
   function initializeProject() {
-    const bg = document.querySelector('#selected_work .bg');
-    const gifWrappers = bg ? bg.querySelectorAll('.gif-wrapper-preload') : [];
+    const wrappers = bg ? bg.querySelectorAll('.gif-wrapper-preload') : [];
     
-    if (gifWrappers.length > 0) {
+    if (wrappers.length > 0) {
+      // Cache GIF wrappers for performance
+      gifWrappers = Array.from(wrappers);
+      
       // GIF wrappers are ready
       updateActiveProject(currentProjectIndex);
       if (isProjectSectionInView()) {

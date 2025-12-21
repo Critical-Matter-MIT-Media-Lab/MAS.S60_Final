@@ -87,7 +87,7 @@
     display: none !important;
   }
   
-  /* GIF backgrounds for mobile */
+  /* GIF backgrounds for mobile - GPU accelerated */
   #selected_work .bg .gif-wrapper-preload {
     position: absolute !important;
     top: 0 !important;
@@ -96,9 +96,12 @@
     height: 100% !important;
     overflow: hidden !important;
     opacity: 0 !important;
-    transition: opacity 0.5s ease !important;
+    transition: opacity 0.3s ease !important;
     z-index: 0 !important;
     pointer-events: none !important;
+    will-change: opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   
   #selected_work .bg .gif-wrapper-preload img {
@@ -108,7 +111,8 @@
     width: auto !important;
     height: 100% !important;
     max-width: none !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%) translateZ(0) !important;
+    backface-visibility: hidden;
   }
   
   /* Team Section */
