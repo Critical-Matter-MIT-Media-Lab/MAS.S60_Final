@@ -38,7 +38,10 @@
     
     // Update GIF visibility
     const bg = document.querySelector('#selected_work .bg');
-    if (!bg) return;
+    if (!bg) {
+      console.warn('No bg found');
+      return;
+    }
     
     const gifWrappers = bg.querySelectorAll('.gif-wrapper-preload');
     const currentLink = projectItems[index]?.querySelector('a');
@@ -49,9 +52,11 @@
       if (wrapperGifUrl === currentGifUrl) {
         wrapper.style.opacity = '1';
         wrapper.style.zIndex = '1';
+        wrapper.style.visibility = 'visible';
       } else {
         wrapper.style.opacity = '0';
         wrapper.style.zIndex = '0';
+        wrapper.style.visibility = 'hidden';
       }
     });
   }

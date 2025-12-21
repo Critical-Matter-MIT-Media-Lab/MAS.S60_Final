@@ -70,30 +70,29 @@
     
     console.log('Preloaded ' + Object.keys(videoCache).length + ' videos');
     
-    // Add hover listeners
-    projectLinks.forEach(function(link, index) {
-      link.addEventListener('mouseover', function(e) {
-        const videoId = this.getAttribute('data-video');
-        
-        console.log('Mouseover, showing video:', videoId);
-        
-        // Hide all videos first
-        for (var id in videoCache) {
-          if (videoCache[id]) {
-            videoCache[id].style.opacity = '0';
+    // Add hover listeners - only for desktop
+    if (!isMobile) {
+      projectLinks.forEach(function(link, index) {
+        link.addEventListener('mouseover', function(e) {
+          const videoId = this.getAttribute('data-video');
+          
+          console.log('Mouseover, showing video:', videoId);
+          
+          // Hide all videos first
+          for (var id in videoCache) {
+            if (videoCache[id]) {
+              videoCache[id].style.opacity = '0';
+            }
           }
-        }
+          
+          // Show the hovered video
+          if (videoId && videoCache[videoId]) {
+            videoCache[videoId].style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0.6 !important; pointer-events: none !important; z-index: 1 !important; transition: opacity 0.5s ease !important;';
+            console.log('Video shown, opacity set to 0.6, element:', videoCache[videoId]);
+          }
+        });
         
-        // Show the hovered video
-        if (videoId && videoCache[videoId]) {
-          videoCache[videoId].style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0.6 !important; pointer-events: none !important; z-index: 1 !important; transition: opacity 0.5s ease !important;';
-          console.log('Video shown, opacity set to 0.6, element:', videoCache[videoId]);
-        }
-      });
-      
-      link.addEventListener('mouseout', function(e) {
-        // Only trigger mouseout on desktop
-        if (window.innerWidth > 960) {
+        link.addEventListener('mouseout', function(e) {
           console.log('Mouseout, hiding all videos');
           // Hide all videos
           for (var id in videoCache) {
@@ -101,9 +100,9 @@
               videoCache[id].style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
             }
           }
-        }
+        });
       });
-    });
+    }
 
     // Mobile Scroll Observer - DISABLED, handled by mobile-scroll.js
     // The sticky scroll logic in mobile-scroll.js now controls project switching
