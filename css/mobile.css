@@ -44,15 +44,15 @@
     display: block;
     padding: 10px 0;
     line-height: 1.2;
-    opacity: 0.3 !important;
-    transition: all 0.4s ease;
+    opacity: 0.25 !important;
+    filter: blur(2px) !important;
+    transition: all 0.3s ease;
     transform-origin: left center;
-    transform: none !important;
-    text-shadow: none !important;
   }
   
   #selected_work ol li a.mobile-active {
     opacity: 1 !important;
+    filter: blur(0) !important;
     transform: scale(1.05) !important;
     text-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
   }
