@@ -23,11 +23,17 @@ section:nth-child(1) :not(video) {
 #about div:not(.bg) {
   max-width: 720px;
 }
+#scroll-container {
+  height: 400vh;
+  position: relative;
+}
 #selected_work {
   background: #1f2231;
-  position: relative;
+  position: sticky;
+  top: 0;
   height: 100vh;
   min-height: 100vh;
+  overflow: hidden;
 }
 #selected_work .section-title {
   display: none;
@@ -150,6 +156,38 @@ section:nth-child(1) :not(video) {
 }
 #selected_work ol {
   padding-left: 30px;
+}
+#selected_work ol:hover li a {
+  opacity: 0.2;
+  filter: blur(2px);
+}
+#selected_work ol li a {
+  transition: all 0.4s ease;
+  transform-origin: center center;
+}
+#selected_work ol li a:hover {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1.1);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+#selected_work ol li time {
+  transition: all 0.4s ease;
+}
+#selected_work ol li a:hover time {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+#selected_work ol li a.active-project {
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: scale(1.1) !important;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+}
+#selected_work ol li a.active-project time {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 @media (max-width: 720px) {
   #selected_work ol {

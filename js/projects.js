@@ -11,16 +11,37 @@
       return;
     }
     
+    const isMobile = window.innerWidth <= 960;
     const projectLinks = document.querySelectorAll('#selected_work ol li a[data-video]');
-    console.log('Found ' + projectLinks.length + ' links with data-video');
+    console.log('Found ' + projectLinks.length + ' links, isMobile:', isMobile);
     
-    // Preload all videos
+    // Preload content (videos for desktop, GIFs for mobile)
     projectLinks.forEach(function(link, index) {
       const videoId = link.getAttribute('data-video');
+      const gifUrl = link.getAttribute('data-gif');
       const videoStart = link.getAttribute('data-video-start') || '0';
       const videoZoom = link.getAttribute('data-video-zoom');
       
-      if (videoId && !videoCache[videoId]) {
+      if (isMobile && gifUrl) {
+        // Mobile: Preload GIF
+        console.log('Preloading GIF:', gifUrl);
+        
+        const wrapper = document.createElement('div');
+        wrapper.className = 'gif-wrapper-preload';
+        wrapper.setAttribute('data-gif-url', gifUrl);
+        wrapper.style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
+        
+        const img = document.createElement('img');
+        img.src = gifUrl;
+        img.style.cssText = 'position: absolute !important; top: 50% !important; left: 50% !important; width: 100% !important; height: 100% !important; object-fit: cover !important; transform: translate(-50%, -50%) !important;';
+        
+        wrapper.appendChild(img);
+        bg.appendChild(wrapper);
+        videoCache[videoId] = wrapper;
+        
+        console.log('GIF wrapper added');
+      } else if (!isMobile && videoId && !videoCache[videoId]) {
+        // Desktop: Preload video
         console.log('Preloading video:', videoId, 'start:', videoStart, 'zoom:', videoZoom);
         
         const wrapper = document.createElement('div');
@@ -71,15 +92,44 @@
       });
       
       link.addEventListener('mouseout', function(e) {
-        console.log('Mouseout, hiding all videos');
-        // Hide all videos
-        for (var id in videoCache) {
-          if (videoCache[id]) {
-            videoCache[id].style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
+        // Only trigger mouseout on desktop
+        if (window.innerWidth > 960) {
+          console.log('Mouseout, hiding all videos');
+          // Hide all videos
+          for (var id in videoCache) {
+            if (videoCache[id]) {
+              videoCache[id].style.cssText = 'position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: 0 !important; transition: opacity 0.5s ease !important;';
+            }
           }
         }
       });
     });
+
+    // Mobile Scroll Observer
+    if (window.innerWidth <= 960 && 'IntersectionObserver' in window) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '-45% 0px -45% 0px', // Active only in the middle 10% of screen
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const link = entry.target;
+            
+            // Trigger mouseover logic programmatically
+            link.dispatchEvent(new Event('mouseover'));
+            
+            // Update active styling
+            projectLinks.forEach(l => l.classList.remove('mobile-active'));
+            link.classList.add('mobile-active');
+          }
+        });
+      }, observerOptions);
+
+      projectLinks.forEach(link => observer.observe(link));
+    }
   }
   
   // Initialize
